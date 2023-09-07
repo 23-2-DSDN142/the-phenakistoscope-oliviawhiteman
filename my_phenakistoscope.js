@@ -6,19 +6,33 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
+  pScope.load_image("heart1" , "png");
+  pScope.load_image("kissy" , "png");
 }
 
 function setup_layers(pScope){
 
   new PLayer(null, 220);  //lets us draw the whole circle background, ignoring the boundaries
 
-  var layer1 = new PLayer(faces);
+  var layer1 = new PLayer(hearts);
   layer1.mode( SWIRL(5) );
   layer1.set_boundary( 200, 1000 );
 
-  var layer2 = new PLayer(squares);
+  var layer2 = new PLayer(kissy);
   layer2.mode( RING );
   layer2.set_boundary( 0, 400 );
+}
+
+function hearts(x,y,animation,pScope){
+  scale(0.1)
+  pScope.draw_image("heart1",x,y);
+  
+}
+
+function kissy(x,y,animation,pScope){
+  scale(0.1)
+  
+  pScope.draw_image("kissy",10,1000-animation.wave()*50,20,20);
 }
 
 function faces(x, y, animation, pScope){

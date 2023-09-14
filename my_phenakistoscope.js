@@ -11,13 +11,17 @@ function setup_pScope(pScope){
   pScope.load_image("Flower1","png");
   pScope.load_image("flower2","png");
   pScope.load_image("flower3","png");
+  pScope.load_image("ripples","png");
 }
 
 function setup_layers(pScope){
 
   new PLayer(null,9, 74, 131);  //lets us draw the whole circle background, ignoring the boundaries
 
-  
+  var layer3 = new PLayer(ripples);
+  layer3.mode(SWIRL(3));
+  layer3.set_boundary(300,1000)
+
   var layer1 = new PLayer(lilypad);
   layer1.mode(RING);
   layer1.set_boundary(0,300);
@@ -30,8 +34,13 @@ function setup_layers(pScope){
   layer2.mode(RING);
   layer2.set_boundary(0,1000);
 
-}
+ 
 
+}
+function ripples(x,y,animation,pScope){
+  scale(0.1)
+  pScope.draw_image("ripples",1100,y)
+  }
 function lilypad (x,y,animation,pScope){
   fill(0, 79, 45)
   stroke(0, 79, 45)
@@ -54,3 +63,4 @@ let bounce = 100* animation.wave()
     scale(0.5)
   pScope.draw_image("Flower1",1900+bounce ,flowersize);
 }
+

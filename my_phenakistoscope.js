@@ -8,6 +8,9 @@ function setup_pScope(pScope){
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("lilypad" , "png");
   pScope.load_image_sequence("fish" , "png",16 )
+  pScope.load_image("Flower1","png");
+  pScope.load_image("flower2","png");
+  pScope.load_image("flower3","png");
 }
 
 function setup_layers(pScope){
@@ -22,6 +25,10 @@ function setup_layers(pScope){
   var fishsequence = new PLayer(fish);
   fishsequence.mode(RING);
   fishsequence.set_boundary(0,1000);
+
+  var layer2 = new PLayer(flower)
+  layer2.mode(RING);
+  layer2.set_boundary(0,1000);
 
 }
 
@@ -38,3 +45,9 @@ function fish(x,y,animation,pScope){
   pScope.draw_image_from_sequence("fish", x, 1000,animation.frame);
 }
 
+function flower(x,y,animation,pScope){
+let flowersize = 100 + (animation.wave(1)* 20)
+let bounce = 200* animation.wave()
+    scale(0.5)
+  pScope.draw_image("Flower1",1900+bounce ,flowersize);
+}
